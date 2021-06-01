@@ -10,7 +10,4 @@ public class VtcApplication {
 		SpringApplication.run(VtcApplication.class, args);
 	}
 	
-	public void rerr(){
-		
-	}
 }
