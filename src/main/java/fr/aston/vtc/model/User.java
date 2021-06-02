@@ -1,126 +1,71 @@
 package fr.aston.vtc.model;
 
 import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> loudjairRepo
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+/**
+ * The persistent class for the user database table.
+ * 
+ */
 @Entity
-public class User implements Serializable{
-<<<<<<< HEAD
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable = false, updatable = false)
-	private Long id;
-	private String nom;
-	private String prenom;
-	private String email;
-	private String telephone;
-	private String imageUrl;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getTelephone() {
-		return telephone;
-	}
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", telephone="
-				+ telephone + ", imageUrl=" + imageUrl + "]";
-	}
-	
-	
-	
-	
-=======
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable=false,updatable = false)
-	private Long id;
-	
-	@Column(nullable=false)
-	private String nom;
-	
-	@Column(nullable=false)
-	private String prenom;
-	
-	@Column(nullable=false,unique = true)
-	private String email;
-	
-	@Column(nullable=false,unique = true)
-	private String telephone;
-	
-	/*
-	 *	URL de l'image user 
-	 */
-	
-	// @Column(nullable=true, updatable = true)
-	// private String urlImage;
-	
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 
-	public User(int id, String nom, String prenom, String email, String telephone) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
+	private String email;
+
+	@Column(name="image_url")
+	private String imageUrl;
+
+	private String nom;
+
+	private String prenom;
+
+	private String telephone;
+
+	//bi-directional many-to-one association to Chauffeur
+	@OneToMany(mappedBy="user")
+	private List<Chauffeur> chauffeurs;
+
+	//bi-directional many-to-one association to Client
+	@OneToMany(mappedBy="user")
+	private List<Client> clients;
+
+	public User() {
 	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getImageUrl() {
+		return this.imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -128,34 +73,63 @@ public class User implements Serializable{
 	}
 
 	public String getPrenom() {
-		return prenom;
+		return this.prenom;
 	}
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getTelephone() {
-		return telephone;
+		return this.telephone;
 	}
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", telephone="
-				+ telephone + "]";
+	public List<Chauffeur> getChauffeurs() {
+		return this.chauffeurs;
 	}
 
->>>>>>> loudjairRepo
+	public void setChauffeurs(List<Chauffeur> chauffeurs) {
+		this.chauffeurs = chauffeurs;
+	}
+
+	public Chauffeur addChauffeur(Chauffeur chauffeur) {
+		getChauffeurs().add(chauffeur);
+		chauffeur.setUser(this);
+
+		return chauffeur;
+	}
+
+	public Chauffeur removeChauffeur(Chauffeur chauffeur) {
+		getChauffeurs().remove(chauffeur);
+		chauffeur.setUser(null);
+
+		return chauffeur;
+	}
+
+	public List<Client> getClients() {
+		return this.clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+	public Client addClient(Client client) {
+		getClients().add(client);
+		client.setUser(this);
+
+		return client;
+	}
+
+	public Client removeClient(Client client) {
+		getClients().remove(client);
+		client.setUser(null);
+
+		return client;
+	}
+
 }

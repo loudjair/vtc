@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import fr.aston.vtc.exception.UserNotFoundException;
 import fr.aston.vtc.model.User;
 import fr.aston.vtc.repo.UserRepo;
