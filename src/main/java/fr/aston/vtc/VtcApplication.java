@@ -9,5 +9,5 @@ public class VtcApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VtcApplication.class, args);
 	}
-	
+
 }
