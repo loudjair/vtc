@@ -29,6 +29,17 @@ public class User implements Serializable {
 
 	private String telephone;
 
+	public User(String email, String imageUrl, String nom, String prenom, String telephone,
+			List<Chauffeur> chauffeurs, List<Client> clients) {
+		this.email = email;
+		this.imageUrl = imageUrl;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.chauffeurs = chauffeurs;
+		this.clients = clients;
+	}
+
 	//bi-directional many-to-one association to Chauffeur
 	@OneToMany(mappedBy="user")
 	private List<Chauffeur> chauffeurs;
@@ -130,6 +141,12 @@ public class User implements Serializable {
 		client.setUser(null);
 
 		return client;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", imageUrl=" + imageUrl + ", nom=" + nom + ", prenom=" + prenom
+				+ ", telephone=" + telephone + ", chauffeurs=" + chauffeurs + ", clients=" + clients + "]";
 	}
 
 }

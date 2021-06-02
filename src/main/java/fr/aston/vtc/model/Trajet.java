@@ -21,7 +21,7 @@ public class Trajet implements Serializable {
 
 	private BigDecimal distance;
 
-	private Object itineraire;
+	private String itineraire;
 
 	//bi-directional many-to-one association to Reservation
 	@OneToMany(mappedBy="trajet")
@@ -50,7 +50,7 @@ public class Trajet implements Serializable {
 		return this.itineraire;
 	}
 
-	public void setItineraire(Object itineraire) {
+	public void setItineraire(String itineraire) {
 		this.itineraire = itineraire;
 	}
 
