@@ -30,6 +30,13 @@ public class User implements Serializable{
 	@Column(nullable=false,unique = true)
 	private String telephone;
 	
+	/*
+	 *	URL de l'image user 
+	 */
+	
+	// @Column(nullable=true, updatable = true)
+	// private String urlImage;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
