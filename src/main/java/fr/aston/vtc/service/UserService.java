@@ -32,7 +32,8 @@ public class UserService {
 	}
 	
 	public User findUserById(int id){
-		return userRepo.findUserById(id).orElseThrow(()-> new UserNotFoundException("User by id "+id+" was not found"));
+		return userRepo.findUserById(id)
+				.orElseThrow(()-> new UserNotFoundException("User by id "+id+" was not found"));
 	}
 	
 	public void deleteUser(int id) {

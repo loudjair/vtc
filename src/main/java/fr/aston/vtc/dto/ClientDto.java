@@ -1,10 +1,8 @@
 package fr.aston.vtc.dto;
 
-import java.math.BigDecimal;
+import fr.aston.vtc.model.Client;
 
-import fr.aston.vtc.model.Chauffeur;
-
-public class ChauffeurDto {
+public class ClientDto {
 
 	private int id;
 
@@ -17,23 +15,20 @@ public class ChauffeurDto {
 	private String prenom;
 
 	private String telephone;
-
-	private BigDecimal prixKilometrique;
-
+	
 	private int userId;
 
-	public ChauffeurDto() {
+	public ClientDto() {
 
 	}
 
-	public ChauffeurDto(Chauffeur entite) {
+	public ClientDto(Client entite) {
 
 		this.setEmail(entite.getUser().getEmail());
 		this.setId(entite.getId());
 		this.setImageUrl(entite.getUser().getImageUrl());
 		this.setNom(entite.getUser().getNom());
 		this.setPrenom(entite.getUser().getPrenom());
-		this.setPrixKilometrique(entite.getPrixKilometrique());
 		this.setUserId(entite.getId());
 		this.setTelephone(entite.getUser().getTelephone());
 	}
@@ -84,14 +79,6 @@ public class ChauffeurDto {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public BigDecimal getPrixKilometrique() {
-		return prixKilometrique;
-	}
-
-	public void setPrixKilometrique(BigDecimal prixKilometrique) {
-		this.prixKilometrique = prixKilometrique;
 	}
 
 	public int getUserId() {

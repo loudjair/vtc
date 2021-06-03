@@ -50,7 +50,6 @@ public class ChauffeurResource {
 		Chauffeur newChauffeur = chauffeurService.addChauffeur(chauffeur);
 		ChauffeurDto chauffeurDto = new ChauffeurDto(newChauffeur);
 
-		
 		return new ResponseEntity<>(chauffeurDto,HttpStatus.OK);
 	}
 	
