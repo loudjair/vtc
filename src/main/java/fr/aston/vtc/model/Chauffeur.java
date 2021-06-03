@@ -23,7 +23,13 @@ public class Chauffeur implements Serializable {
 	private BigDecimal prixKilometrique;
 
 	//bi-directional many-to-one association to User
+<<<<<<< HEAD
 	@ManyToOne(cascade=CascadeType.ALL)
+=======
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	//@ManyToOne
+>>>>>>> 86d507fcf7cfd8fff4dfd4f49425cbb6d8209fe7
 	private User user;
 
 	//bi-directional many-to-one association to Facturation
@@ -103,6 +109,12 @@ public class Chauffeur implements Serializable {
 		vehicule.setChauffeur(null);
 
 		return vehicule;
+	}
+
+	@Override
+	public String toString() {
+		return "Chauffeur [id=" + id + ", prixKilometrique=" + prixKilometrique + ", user=" + user + ", facturations="
+				+ facturations + ", vehicules=" + vehicules + "]";
 	}
 
 }

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import fr.aston.vtc.model.Chauffeur;
 
+<<<<<<< HEAD
 public class ChauffeurDto {
 
 	private int id;
@@ -20,6 +21,33 @@ public class ChauffeurDto {
 
 	public ChauffeurDto(Chauffeur entite) {
 
+=======
+public class ChauffeurDto{
+
+	private int id;
+
+	private String email;
+
+	private String imageUrl;
+
+	private String nom;
+
+	private String prenom;
+
+	private String telephone;
+	
+	private BigDecimal prixKilometrique;
+	
+	private int userId;
+
+	public ChauffeurDto() {
+		
+	}
+	
+	public ChauffeurDto(Chauffeur entite) {
+		
+		
+>>>>>>> 86d507fcf7cfd8fff4dfd4f49425cbb6d8209fe7
 		this.setEmail(entite.getUser().getEmail());
 		this.setId(entite.getId());
 		this.setImageUrl(entite.getUser().getImageUrl());
@@ -29,7 +57,12 @@ public class ChauffeurDto {
 		this.setUserId(entite.getId());
 		this.setTelephone(entite.getUser().getTelephone());
 	}
+<<<<<<< HEAD
 
+=======
+	
+	
+>>>>>>> 86d507fcf7cfd8fff4dfd4f49425cbb6d8209fe7
 	public String getTelephone() {
 		return telephone;
 	}
@@ -93,4 +126,8 @@ public class ChauffeurDto {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 86d507fcf7cfd8fff4dfd4f49425cbb6d8209fe7
