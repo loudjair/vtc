@@ -17,7 +17,8 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
+	
+	@Column(nullable=false,unique=true)
 	private String email;
 
 	@Column(name="image_url")
@@ -26,7 +27,7 @@ public class User implements Serializable {
 	private String nom;
 
 	private String prenom;
-
+	@Column(nullable=true,unique=true)
 	private String telephone;
 
 	public User(String email, String imageUrl, String nom, String prenom, String telephone,
