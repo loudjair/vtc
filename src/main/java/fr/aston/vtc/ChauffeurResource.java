@@ -1,5 +1,6 @@
 package fr.aston.vtc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.aston.vtc.dto.ChauffeurDto;
 import fr.aston.vtc.model.Chauffeur;
 import fr.aston.vtc.service.ChauffeurService;
 
@@ -27,28 +29,35 @@ public class ChauffeurResource {
 	}
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Chauffeur>> getAllChauffeurs(){
+	public ResponseEntity<List<?>> getAllChauffeurs(){
+		//List<Chauffeur> chauffeurs = chauffeurService.findAllChauffeurs();
 		List<Chauffeur> chauffeurs = chauffeurService.findAllChauffeurs();
-		return new ResponseEntity<>(chauffeurs,HttpStatus.OK);
+		List<ChauffeurDto> chDtos = new ArrayList<ChauffeurDto>();
+		for (Chauffeur chauffeur : chauffeurs) {
+			chDtos.add(new ChauffeurDto(chauffeur));
+		}
+		return new ResponseEntity<>(chDtos,HttpStatus.OK);
 	}
 	
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Chauffeur> findChauffeurById(@PathVariable("id") int id){
+	public ResponseEntity<?> findChauffeurById(@PathVariable("id") int id){
 		 Chauffeur chauffeur = chauffeurService.findChauffeurById(id);
-		return new ResponseEntity<>(chauffeur,HttpStatus.OK);
+		return new ResponseEntity<>(new ChauffeurDto(chauffeur),HttpStatus.OK);
 	}
-	
+		
 	@PostMapping("/add")
-	public ResponseEntity<Chauffeur> addChauffeur(@RequestBody Chauffeur chauffeur){
-		 Chauffeur newChauffeur = chauffeurService.addChauffeur(chauffeur);
-		 // ajouter user
-		return new ResponseEntity<>(newChauffeur,HttpStatus.OK);
+	public ResponseEntity<?> addChauffeur(@RequestBody Chauffeur chauffeur){
+		Chauffeur newChauffeur = chauffeurService.addChauffeur(chauffeur);
+		ChauffeurDto chauffeurDto = new ChauffeurDto(newChauffeur);
+
+		
+		return new ResponseEntity<>(chauffeurDto,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<Chauffeur> updateChauffeur(@RequestBody Chauffeur chauffeur){
+	public ResponseEntity<?> updateChauffeur(@RequestBody Chauffeur chauffeur){
 		 Chauffeur updateChauffeur = chauffeurService.updateChauffeur(chauffeur);
-		return new ResponseEntity<>(updateChauffeur,HttpStatus.OK);
+		return new ResponseEntity<>(new ChauffeurDto(updateChauffeur),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{id}")
