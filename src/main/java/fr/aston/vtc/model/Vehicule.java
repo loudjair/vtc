@@ -21,8 +21,12 @@ public class Vehicule implements Serializable {
 
 	private String modele;
 
+	/*
+	 * Type de cascade pour ajouter la clé étrangère de chauffeur
+	 */
 	//bi-directional many-to-one association to Chauffeur
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name="chauffeur_id")
 	private Chauffeur chauffeur;
 
 	public Vehicule() {
