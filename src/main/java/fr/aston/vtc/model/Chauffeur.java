@@ -25,7 +25,6 @@ public class Chauffeur implements Serializable {
 	//bi-directional many-to-one association to User
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
-	//@ManyToOne
 	private User user;
 
 	//bi-directional many-to-one association to Facturation
