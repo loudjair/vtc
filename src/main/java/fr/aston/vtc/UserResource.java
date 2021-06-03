@@ -34,19 +34,19 @@ public class UserResource {
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<User> findUserById(@PathVariable("id") int id){
-		 User user = userService.findUserById(id);
+		User user = userService.findUserById(id);
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
 	public ResponseEntity<User> addUser(@RequestBody User user){
-		 User newUser = userService.addUser(user);
+		User newUser = userService.addUser(user);
 		return new ResponseEntity<>(newUser,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<User> updateUser(@RequestBody User user){
-		 User updateUser = userService.updateUser(user);
+		User updateUser = userService.updateUser(user);
 		return new ResponseEntity<>(updateUser,HttpStatus.OK);
 	}
 	

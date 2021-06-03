@@ -13,7 +13,6 @@ import fr.aston.vtc.repo.ChauffeurRepo;
 public class ChauffeurService {
 
 	private final ChauffeurRepo chauffeurRepo;
-	//private final UserService userService;
 	
 	@Autowired
 	public ChauffeurService(ChauffeurRepo chauffeurRepo) {
