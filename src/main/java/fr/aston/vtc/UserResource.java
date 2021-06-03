@@ -1,5 +1,6 @@
 package fr.aston.vtc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.aston.vtc.dto.UserDto;
 import fr.aston.vtc.model.User;
 import fr.aston.vtc.service.UserService;
 
@@ -27,27 +29,31 @@ public class UserResource {
 	}
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<User>> getAllUsers(){
+	public ResponseEntity<List<?>> getAllUsers(){
 		List<User> users = userService.findAllUsers();
-		return new ResponseEntity<>(users,HttpStatus.OK);
+		List<UserDto> usersDto = new ArrayList<UserDto>();
+		for(User user: users) {
+			usersDto.add(new UserDto(user));
+		}
+		return new ResponseEntity<>(usersDto,HttpStatus.OK);
 	}
 	
 	@GetMapping("/find/{id}")
-	public ResponseEntity<User> findUserById(@PathVariable("id") int id){
+	public ResponseEntity<?> findUserById(@PathVariable("id") int id){
 		User user = userService.findUserById(id);
-		return new ResponseEntity<>(user,HttpStatus.OK);
+		return new ResponseEntity<>(new UserDto(user),HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<User> addUser(@RequestBody User user){
+	public ResponseEntity<?> addUser(@RequestBody User user){
 		User newUser = userService.addUser(user);
-		return new ResponseEntity<>(newUser,HttpStatus.OK);
+		return new ResponseEntity<>(new UserDto(newUser),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<User> updateUser(@RequestBody User user){
+	public ResponseEntity<?> updateUser(@RequestBody User user){
 		User updateUser = userService.updateUser(user);
-		return new ResponseEntity<>(updateUser,HttpStatus.OK);
+		return new ResponseEntity<>(new UserDto(updateUser),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{id}")
