@@ -16,16 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.aston.vtc.dto.ChauffeurDto;
 import fr.aston.vtc.model.Chauffeur;
+import fr.aston.vtc.model.Vehicule;
 import fr.aston.vtc.service.ChauffeurService;
+import fr.aston.vtc.service.UserService;
+import fr.aston.vtc.service.VehiculeService;
 
 @RestController
 @RequestMapping("/chauffeur")
 public class ChauffeurResource {
 	private final ChauffeurService chauffeurService;
+	private final UserService userService;
+	private final VehiculeService vehiculeService;
 	
-	public ChauffeurResource(ChauffeurService chauffeurService) {
+	public ChauffeurResource(ChauffeurService chauffeurService , UserService userService , VehiculeService vehiculeService) {
 		super();
 		this.chauffeurService = chauffeurService;
+		this.userService = userService;
+		this.vehiculeService = vehiculeService;
 	}
 	
 	@GetMapping("/all")
@@ -60,9 +67,29 @@ public class ChauffeurResource {
 		return new ResponseEntity<>(new ChauffeurDto(updateChauffeur),HttpStatus.OK);
 	}
 	
+	/*
+	 * Delete en trois temps, dans l'ordre suivant: 
+	 * 1) Delete les vehicule(s)
+	 * 2) Delete chauffeur
+	 * 3) Delete user
+	 * Pour éviter des erreurs liées aux clés étrangères
+	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteChauffeur(@PathVariable("id") int id){
+		Chauffeur chauffeur = this.chauffeurService.findChauffeurById(id);
+		List<Vehicule> vehicules = chauffeur.getVehicules();
+		
+		//Delete le(s) vehicule(s) du chauffeur
+		for(Vehicule vehicule:vehicules) {
+			this.vehiculeService.deleteVehicule(vehicule.getId());
+		}
+		
+		//Delete chauffeur
 		chauffeurService.deleteChauffeur(id);
+		
+		//Delete user
+		userService.deleteUser(chauffeur.getUser().getId());
+		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

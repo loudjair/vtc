@@ -21,7 +21,8 @@ public class Facturation implements Serializable {
 	private BigDecimal prix;
 
 	//bi-directional many-to-one association to Chauffeur
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name="chauffeur_id")
 	private Chauffeur chauffeur;
 
 	//bi-directional many-to-one association to Reservation
