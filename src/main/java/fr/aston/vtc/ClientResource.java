@@ -17,15 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.aston.vtc.dto.ClientDto;
 import fr.aston.vtc.model.Client;
 import fr.aston.vtc.service.ClientService;
+import fr.aston.vtc.service.UserService;
 
 @RestController
 @RequestMapping("/client")
 public class ClientResource {
 	private final ClientService clientService;
+	private final UserService userService;
 	
-	public ClientResource(ClientService clientService) {
+	public ClientResource(ClientService clientService,UserService userService) {
 		super();
 		this.clientService = clientService;
+		this.userService = userService;
 	}
 	
 	@GetMapping("/all")
@@ -58,9 +61,21 @@ public class ClientResource {
 		return new ResponseEntity<>(new ClientDto(updateClient),HttpStatus.OK);
 	}
 	
+	/*
+	 * Delete en trois temps, dans l'ordre suivant: 
+	 * 1) Delete les reservation(s)
+	 * 2) Delete client
+	 * 3) Delete user
+	 * Pour éviter des erreurs liées aux clés étrangères
+	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteClient(@PathVariable("id") int id){
+		Client client = clientService.findClientById(id);
+		//Delete les reservation(s)
+		
 		clientService.deleteClient(id);
+		
+		userService.deleteUser(client.getUser().getId());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
