@@ -24,10 +24,13 @@ public class User implements Serializable {
 	@Column(name="image_url")
 	private String imageUrl;
 
+	@Column(nullable=false)
 	private String nom;
 
+	@Column(nullable=false)
 	private String prenom;
-	@Column(nullable=true,unique=true)
+	
+	@Column(nullable=false,unique=true)
 	private String telephone;
 
 	public User(String email, String imageUrl, String nom, String prenom, String telephone,
