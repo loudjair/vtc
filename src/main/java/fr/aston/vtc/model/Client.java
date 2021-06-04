@@ -19,7 +19,7 @@ public class Client implements Serializable {
 	private int id;
 
 	//bi-directional many-to-one association to User
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 
 	//bi-directional many-to-one association to Reservation
