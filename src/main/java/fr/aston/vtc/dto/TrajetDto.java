@@ -7,7 +7,7 @@ import fr.aston.vtc.model.Trajet;
 public class TrajetDto {
 
 	private int id;
-	private BigDecimal distance;
+	private float distance;
 	private String itineraire;
 	
 	public TrajetDto() {
@@ -24,10 +24,10 @@ public class TrajetDto {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public BigDecimal getDistance() {
+	public float getDistance() {
 		return distance;
 	}
-	public void setDistance(BigDecimal distance) {
+	public void setDistance(float distance) {
 		this.distance = distance;
 	}
 	public String getItineraire() {

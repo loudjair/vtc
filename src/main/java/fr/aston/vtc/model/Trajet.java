@@ -20,7 +20,7 @@ public class Trajet implements Serializable {
 	private int id;
 	
 	@Column(nullable=false)
-	private BigDecimal distance;
+	private float distance;
 
 	@Column(nullable=false)
 	private String itineraire;
@@ -40,11 +40,11 @@ public class Trajet implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getDistance() {
+	public float getDistance() {
 		return this.distance;
 	}
 
-	public void setDistance(BigDecimal distance) {
+	public void setDistance(float distance) {
 		this.distance = distance;
 	}
 
