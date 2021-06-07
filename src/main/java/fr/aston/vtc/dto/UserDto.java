@@ -1,7 +1,5 @@
 package fr.aston.vtc.dto;
 
-import javax.persistence.Column;
-
 import fr.aston.vtc.model.User;
 
 public class UserDto {
