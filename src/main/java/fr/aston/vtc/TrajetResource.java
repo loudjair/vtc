@@ -23,7 +23,6 @@ public class TrajetResource {
 	private final TrajetService trajetService;
 
 	public TrajetResource(TrajetService trajetService) {
-		super();
 		this.trajetService = trajetService;
 	}
 	

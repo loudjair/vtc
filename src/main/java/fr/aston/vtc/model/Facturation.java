@@ -2,7 +2,6 @@ package fr.aston.vtc.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 /**
@@ -18,7 +17,7 @@ public class Facturation implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private BigDecimal prix;
+	private float prix;
 
 	//bi-directional many-to-one association to Chauffeur
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -40,11 +39,11 @@ public class Facturation implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getPrix() {
+	public float getPrix() {
 		return this.prix;
 	}
 
-	public void setPrix(BigDecimal prix) {
+	public void setPrix(float prix) {
 		this.prix = prix;
 	}
 

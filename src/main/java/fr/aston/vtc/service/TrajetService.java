@@ -3,11 +3,13 @@ package fr.aston.vtc.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.aston.vtc.exception.TrajetNotFoundException;
 import fr.aston.vtc.model.Trajet;
 import fr.aston.vtc.repo.TrajetRepo;
 
+@Service
 public class TrajetService {
 
 	private final TrajetRepo trajetRepo;

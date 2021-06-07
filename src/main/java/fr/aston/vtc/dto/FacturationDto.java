@@ -1,7 +1,5 @@
 package fr.aston.vtc.dto;
 
-import java.math.BigDecimal;
-
 
 import fr.aston.vtc.model.Chauffeur;
 import fr.aston.vtc.model.Facturation;
@@ -11,7 +9,7 @@ public class FacturationDto {
 	
 	private int id;
 	
-	private BigDecimal prix;
+	private float prix;
 	
 	private Chauffeur chauffeur;
 	
@@ -36,11 +34,11 @@ public class FacturationDto {
 		this.id = id;
 	}
 
-	public BigDecimal getPrix() {
+	public float getPrix() {
 		return prix;
 	}
 
-	public void setPrix(BigDecimal prix) {
+	public void setPrix(float prix) {
 		this.prix = prix;
 	}
 

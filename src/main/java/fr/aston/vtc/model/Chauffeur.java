@@ -2,7 +2,6 @@ package fr.aston.vtc.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -20,7 +19,7 @@ public class Chauffeur implements Serializable {
 	private int id;
 
 	@Column(name="prix_kilometrique",nullable=false)
-	private BigDecimal prixKilometrique;
+	private float prixKilometrique;
 
 	//bi-directional many-to-one association to User
 
@@ -47,11 +46,11 @@ public class Chauffeur implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getPrixKilometrique() {
+	public float getPrixKilometrique() {
 		return this.prixKilometrique;
 	}
 
-	public void setPrixKilometrique(BigDecimal prixKilometrique) {
+	public void setPrixKilometrique(float prixKilometrique) {
 		this.prixKilometrique = prixKilometrique;
 	}
 

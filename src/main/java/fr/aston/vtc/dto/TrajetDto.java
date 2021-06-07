@@ -1,6 +1,5 @@
 package fr.aston.vtc.dto;
 
-import java.math.BigDecimal;
 
 import fr.aston.vtc.model.Trajet;
 
