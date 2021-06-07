@@ -28,10 +28,12 @@ public class Reservation implements Serializable {
 
 	//bi-directional many-to-one association to Client
 	@ManyToOne
+	@JoinColumn(name="client_id")
 	private Client client;
 
 	//bi-directional many-to-one association to Trajet
 	@ManyToOne
+	@JoinColumn(name="trajet_id")
 	private Trajet trajet;
 
 	public Reservation() {

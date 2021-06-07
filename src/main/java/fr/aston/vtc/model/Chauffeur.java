@@ -19,7 +19,7 @@ public class Chauffeur implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="prix_kilometrique")
+	@Column(name="prix_kilometrique",nullable=false)
 	private BigDecimal prixKilometrique;
 
 	//bi-directional many-to-one association to User

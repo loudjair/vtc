@@ -32,8 +32,7 @@ public class ReservationService {
 	}
 	
 	public Reservation findReservationById(int id) {
-		return reservationRepo.findReservationById(id)
-				.orElseThrow(() -> new ReservationNotFoundException("Reservation by id "+id+" was not found"));
+		return reservationRepo.findReservationById(id).orElseThrow(() -> new ReservationNotFoundException("Reservation by id "+id+" was not found"));
 	}
 	
 	public void deleteReservation(int id) {

@@ -18,9 +18,11 @@ public class Trajet implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
+	
+	@Column(nullable=false)
 	private BigDecimal distance;
 
+	@Column(nullable=false)
 	private String itineraire;
 
 	//bi-directional many-to-one association to Reservation
@@ -46,7 +48,7 @@ public class Trajet implements Serializable {
 		this.distance = distance;
 	}
 
-	public Object getItineraire() {
+	public String getItineraire() {
 		return this.itineraire;
 	}
 

@@ -37,7 +37,6 @@ public class ChauffeurResource {
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<?>> getAllChauffeurs(){
-		//List<Chauffeur> chauffeurs = chauffeurService.findAllChauffeurs();
 		List<Chauffeur> chauffeurs = chauffeurService.findAllChauffeurs();
 		List<ChauffeurDto> chDtos = new ArrayList<ChauffeurDto>();
 		for (Chauffeur chauffeur : chauffeurs) {
