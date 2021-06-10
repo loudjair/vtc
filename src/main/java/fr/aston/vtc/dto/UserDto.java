@@ -6,6 +6,8 @@ public class UserDto {
 	private int id;
 
 	private String email;
+	
+	private String password;
 
 	private String imageUrl;
 
@@ -15,13 +17,15 @@ public class UserDto {
 
 	private String telephone;
 	
+	
 	public UserDto() {
 		
 	}
 	
 	public UserDto(User entite) {
-		this.setEmail(entite.getEmail());
 		this.setId(entite.getId());
+		this.setEmail(entite.getEmail());
+		this.setPassword(entite.getPassword());
 		this.setImageUrl(entite.getImageUrl());
 		this.setNom(entite.getNom());
 		this.setPrenom(entite.getPrenom());
@@ -42,6 +46,14 @@ public class UserDto {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getImageUrl() {

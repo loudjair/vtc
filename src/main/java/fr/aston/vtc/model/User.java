@@ -36,9 +36,10 @@ public class User implements Serializable {
 	@Column(nullable=false,unique=true)
 	private String telephone;
 
-	public User(String email, String imageUrl, String nom, String prenom, String telephone,
+	public User(String email, String password, String imageUrl, String nom, String prenom, String telephone,
 			List<Chauffeur> chauffeurs, List<Client> clients) {
 		this.email = email;
+		this.password = password;
 		this.imageUrl = imageUrl;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -73,7 +74,15 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public String getImageUrl() {
 		return this.imageUrl;
 	}
